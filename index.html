@@ -1,0 +1,586 @@
+<!-- Propiedad de CODET | Autor: Alejandro Flores -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Arkitektur Studio | Arquitectura e interiorismo</title>
+  <meta name="description" content="Arkitektur Studio. Arquitectura residencial, interiorismo y proyectos de inversión.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Arkitektur Studio | Arquitectura e interiorismo">
+  <meta property="og:description" content="Interpretamos lo que el cliente desea para encontrar su propio estilo, con plenitud y satisfacción total en cada proyecto.">
+  <meta property="og:image" content="https://tu-dominio.com/img/logo-portada.jpg">
+  <meta property="og:url" content="https://tu-dominio.com/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --vino: #6b1712;
+      --azul: #4a9bbd;
+      --morado: #6a4a85;
+      --pizarra: #5e6a6b;
+      --bg: #f6f4f1;
+      --tx: #22201f;
+      --mut: #5a5754;
+      --line: #d9d4ce;
+      --sans: 'Jost', 'Century Gothic', Futura, 'Trebuchet MS', sans-serif;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #171514; --tx: #efeae4; --mut: #b3aca4; --line: #3a3532;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #171514; --tx: #efeae4; --mut: #b3aca4; --line: #3a3532;
+    }
+    *, *::before, *::after { box-sizing: inherit; }
+    html { 
+      scroll-behavior: smooth; 
+      scroll-padding-top: calc(68px + env(safe-area-inset-top, 0px));
+      scroll-snap-type: y proximity; 
+    }
+    body { margin: 0; background: var(--bg); color: var(--tx); font: 400 1.05rem/1.6 var(--sans); }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--azul); outline-offset: 3px; }
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); width: 100%; }
+    header { 
+      position: fixed; 
+      top: 0; 
+      left: 0;
+      width: 100%;
+      z-index: 10; 
+      background: var(--vino); 
+      color: #fff; 
+      transform: translateY(-100%); 
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    header.visible-scroll {
+      transform: translateY(0);
+    }
+    header .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .marca { display: inline-flex; align-items: center; font-size: 1.35rem; letter-spacing: .01em; text-decoration: none; }
+    .marca b { font-weight: 600; color: var(--azul); }
+    nav { display: flex; gap: clamp(16px, 3vw, 36px); }
+    nav a { text-decoration: none; font-size: .98rem; padding: 6px 0; border-bottom: 2px solid transparent; transition: border-color .2s; }
+    nav a:hover { border-color: var(--azul); }
+    section { scroll-snap-align: start; }
+    .oculto {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .oculto.lenta {
+      transition-duration: 2s; 
+    }
+    .visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .d-1 { transition-delay: 0.1s; }
+    .d-2 { transition-delay: 0.2s; }
+    .d-3 { transition-delay: 0.3s; }
+    .banda { 
+      background: #f5f5f5; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      min-height: 100vh; 
+      padding: clamp(18px, 3vw, 36px) 20px; 
+      position: relative; 
+    }
+    .logo { display: block; width: min(440px, 78vw); height: auto; }
+    @keyframes latido-elegante {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+      100% { transform: scale(1); }
+    }
+    .palpitar {
+      animation: latido-elegante 5s ease-in-out infinite;
+    }
+    .scroll-wrap {
+      position: absolute;
+      bottom: clamp(20px, 5vh, 40px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .flecha-scroll {
+      display: block;
+      width: 18px;
+      height: 18px;
+      border-right: 2px solid var(--mut);
+      border-bottom: 2px solid var(--mut);
+      transform: rotate(45deg);
+      animation: desliza-flecha 2s infinite ease-in-out;
+    }
+    @keyframes desliza-flecha {
+      0% { transform: translateY(-10px) rotate(45deg); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(10px) rotate(45deg); opacity: 0; }
+    }
+    .hero { 
+      background: var(--vino); 
+      color: #fff; 
+      overflow: hidden; 
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero .wrap { display: grid; grid-template-columns: 1fr; padding-top: clamp(40px, 7vw, 96px); padding-bottom: clamp(40px, 7vw, 96px); }
+    .hero h1 { margin: 0; font-weight: 500; font-size: clamp(2.3rem, 5.6vw, 4.9rem); line-height: 1.02; letter-spacing: -.02em; }
+    .hero h1 span { display: block; color: var(--azul); }
+    .rol { font: italic 500 clamp(1.3rem, 2vw, 1.7rem)/1.2 var(--serif); margin: 26px 0 8px; color: #e9d9d6; }
+    .hero .rol, .hero p.sub { max-width: 60ch; }
+    .hero p.sub { max-width: 52ch; color: #f0e4e1; margin: 0 0 32px; }
+    .acc { display: flex; flex-wrap: wrap; gap: 14px; }
+    .btn { display: inline-block; padding: 14px 26px; font: 500 1rem var(--sans); text-decoration: none; border: 2px solid transparent; border-radius: 30px; transition: background .2s, color .2s, border-color .2s; }
+    .btn.wa { background: var(--azul); color: #fff; }
+    .btn.wa:hover { background: #fff; color: #0f2a35; }
+    .btn.sec { border-color: #fff; color: #fff; }
+    .btn.sec:hover { background: #fff; color: var(--vino); }
+    .serv { padding: clamp(56px, 8vw, 110px) 0; min-height: 100vh; display: flex; align-items: center; }
+    .serv-cab { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; margin-bottom: clamp(40px, 6vw, 72px); width: 100%; }
+    .serv-cab h2 { margin: 0; font-weight: 500; font-size: clamp(1.8rem, 3.6vw, 3rem); line-height: 1.1; letter-spacing: -.015em; }
+    .serv-cab .intro { margin: 0; color: var(--mut); max-width: 50ch; font-size: 1.1rem; }
+    #arq-complex { 
+      width: 100%; 
+      height: clamp(280px, 45vh, 500px); 
+      display: block; 
+      cursor: crosshair; 
+      -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 85%);
+      mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 85%);
+    }
+    .lin { border-top: 1px solid var(--line); }
+    .lin:last-child { border-bottom: 1px solid var(--line); }
+    .cab { all: unset; box-sizing: border-box; display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr) 28px; gap: 8px 40px; align-items: center; width: 100%; padding: 26px 0; cursor: pointer; }
+    .cab:focus-visible { outline: 3px solid var(--azul); outline-offset: 3px; }
+    .cab h3 { margin: 0; font-weight: 500; font-size: clamp(1.3rem, 2.2vw, 1.8rem); transition: color .2s; }
+    .cab p { margin: 0; color: var(--mut); max-width: 56ch; }
+    .cab i { width: 14px; height: 14px; border-right: 2px solid var(--vino); border-bottom: 2px solid var(--vino); transform: rotate(45deg); transition: transform .35s; justify-self: end; margin-top: -6px; }
+    .lin.abierto .cab h3 { color: var(--vino); }
+    .lin.fijado .cab h3 { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 2px; }
+    .lin.abierto .cab i { transform: rotate(-135deg); margin-top: 6px; }
+    :root[data-theme="dark"] .cab i, :root[data-theme="dark"] .lin.abierto .cab h3 { border-color: var(--azul); color: var(--azul); }
+    .pan { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .5s cubic-bezier(.2, .7, .2, 1); }
+    .lin.abierto .pan { grid-template-rows: 1fr; }
+    .pan > div { overflow: hidden; min-height: 0; }
+    .car { overflow: hidden; padding: 16px 0 30px; }
+    .pista { display: flex; width: max-content; animation: desliza var(--dur, 45s) linear infinite; }
+    .pista img { 
+      height: clamp(200px, 28vw, 320px); 
+      width: auto; 
+      display: block; 
+      margin-right: 14px; 
+      flex: none; 
+    }
+    @keyframes desliza { to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) { .car { overflow-x: auto; } .pista { animation: none; } }
+    footer { scroll-snap-align: end; background: var(--pizarra); color: #fff; padding: clamp(40px, 6vw, 72px) 0 28px; }
+    footer .wrap { display: grid; grid-template-columns: 1.3fr 1fr auto; gap: clamp(24px, 4vw, 56px); align-items: start; }
+    footer h2 { margin: 0 0 14px; font-weight: 500; font-size: 1.5rem; }
+    .ct { list-style: none; padding: 0; margin: 0 0 20px; display: grid; gap: 6px; }
+    .ct a { text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, .4); }
+    .ct a:hover { border-color: #fff; }
+    .nom { font-size: 1.05rem; }
+    .nom b { font-weight: 600; }
+    .nom em { display: block; font: italic 500 1.25rem var(--serif); color: #dfe6e6; }
+    .legal { font-size: .8rem; line-height: 1.5; color: #e2e8e8; max-width: 46ch; }
+    .flogo { width: 170px; border-radius: 4px; }
+    .pie { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, .25); font-size: .85rem; color: #dfe6e6; }
+    @media (max-width: 860px) {
+      .hero .wrap, footer .wrap { grid-template-columns: 1fr; }
+      .cab { grid-template-columns: 1fr 28px; }
+      .cab p { grid-column: 1; }
+      nav a:not(.c) { display: none; }
+      nav a.c { display: inline; }
+    }
+  </style>
+</head>
+<body>
+  <header id="encabezado">
+    <div class="wrap">
+      <a class="marca" href="#inicio">arkitektur <b>studio</b></a>
+      <nav aria-label="Principal"><a href="#contacto" class="c">Contacto</a></nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="banda" aria-label="Arkitektur Studio">
+      <div class="oculto lenta">
+        <img class="logo palpitar" src="img/logo-portada.jpg" alt="Logotipo de Arkitektur Studio">
+      </div>
+      <div class="scroll-wrap oculto lenta d-2">
+        <span class="flecha-scroll"></span>
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <h1 class="oculto">Logrando cambios de vida<span>por medio de arquitectura e interiorismo.</span></h1>
+          <p class="rol oculto d-1">Edgar Israel Sánchez Moreno · arquitecto – decorador</p>
+          <p class="sub oculto d-2">Interpretamos lo que el cliente desea para encontrar su propio estilo, con plenitud y satisfacción total en cada proyecto.</p>
+          <div class="acc oculto d-3">
+            <a class="btn sec" data-wa href="#contacto">Escribir por WhatsApp</a>
+            <a class="btn sec" href="#sec-residencias">Ver servicios</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="serv" id="servicios">
+      <div class="wrap">
+        <div class="serv-cab">
+          <h2 class="oculto">Qué hacemos</h2>
+          <canvas id="arq-complex" class="oculto d-1" role="img" aria-label="Estructura de edificios tridimensionales generados dinámicamente"></canvas>
+          <p class="intro oculto d-2">Del primer trazo a la obra terminada: arquitectura, interiorismo y proyectos de inversión.</p>
+        </div>
+
+        <div class="lin oculto d-3" data-k="residencias" id="sec-residencias">
+          <button class="cab" aria-expanded="false" aria-controls="p-residencias">
+            <h3>Residencias</h3>
+            <p>Arquitectura con detalles que marcan la diferencia y logran un sello personal para cada cliente.</p>
+            <i aria-hidden="true"></i>
+          </button>
+          <div class="pan" id="p-residencias">
+            <div>
+              <div class="car">
+                <div class="pista">
+                  <img src="img/residencias-1.jpg" alt="Residencias: proyecto 1" loading="lazy">
+                  <img src="img/residencias-2.jpg" alt="Residencias: proyecto 2" loading="lazy">
+                  <img src="img/residencias-3.jpg" alt="Residencias: proyecto 3" loading="lazy">
+                  <img src="img/residencias-4.jpg" alt="Residencias: proyecto 4" loading="lazy">
+                  <img src="img/residencias-5.jpg" alt="Residencias: proyecto 5" loading="lazy">
+                  <img src="img/residencias-6.jpg" alt="Residencias: proyecto 6" loading="lazy">
+                  <img src="img/residencias-7.jpg" alt="Residencias: proyecto 7" loading="lazy">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="lin oculto d-3" data-k="casa">
+          <button class="cab" aria-expanded="false" aria-controls="p-casa">
+            <h3>Casa habitación</h3>
+            <p>Construcciones limpias y sencillas, con riqueza arquitectónica, que generan seguridad y calma para quien las vive.</p>
+            <i aria-hidden="true"></i>
+          </button>
+          <div class="pan" id="p-casa">
+            <div>
+              <div class="car">
+                <div class="pista">
+                  <img src="img/casa-habitacion-1.jpg" alt="Casa habitación: proyecto 1" loading="lazy">
+                  <img src="img/casa-habitacion-2.jpg" alt="Casa habitación: proyecto 2" loading="lazy">
+                  <img src="img/casa-habitacion-3.jpg" alt="Casa habitación: proyecto 3" loading="lazy">
+                  <img src="img/casa-habitacion-4.jpg" alt="Casa habitación: proyecto 4" loading="lazy">
+                  <img src="img/casa-habitacion-5.jpg" alt="Casa habitación: proyecto 5" loading="lazy">
+                  <img src="img/casa-habitacion-6.jpg" alt="Casa habitación: proyecto 6" loading="lazy">
+                  <img src="img/casa-habitacion-7.jpg" alt="Casa habitación: proyecto 7" loading="lazy">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lin oculto d-3" data-k="interiorismo">
+          <button class="cab" aria-expanded="false" aria-controls="p-interiorismo">
+            <h3>Interiorismo</h3>
+            <p>Espacios únicos y acogedores, con especial atención a las vistas y a la iluminación.</p>
+            <i aria-hidden="true"></i>
+          </button>
+          <div class="pan" id="p-interiorismo">
+            <div>
+              <div class="car">
+                <div class="pista">
+                  <img src="img/interiorismo-1.jpg" alt="Interiorismo: proyecto 1" loading="lazy">
+                  <img src="img/interiorismo-2.jpg" alt="Interiorismo: proyecto 2" loading="lazy">
+                  <img src="img/interiorismo-3.jpg" alt="Interiorismo: proyecto 3" loading="lazy">
+                  <img src="img/interiorismo-4.jpg" alt="Interiorismo: proyecto 4" loading="lazy">
+                  <img src="img/interiorismo-5.jpg" alt="Interiorismo: proyecto 5" loading="lazy">
+                  <img src="img/interiorismo-6.jpg" alt="Interiorismo: proyecto 6" loading="lazy">
+                  <img src="img/interiorismo-7.jpg" alt="Interiorismo: proyecto 7" loading="lazy">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lin oculto d-3" data-k="inversion">
+          <button class="cab" aria-expanded="false" aria-controls="p-inversion">
+            <h3>Proyectos de inversión</h3>
+            <p>Fraccionamientos, desarrollos industriales, comerciales y oficinas, con criterios de sustentabilidad.</p>
+            <i aria-hidden="true"></i>
+          </button>
+          <div class="pan" id="p-inversion">
+            <div>
+              <div class="car">
+                <div class="pista">
+                  <img src="img/proyectos-de-inversion-1.jpg" alt="Proyectos de inversión: proyecto 1" loading="lazy">
+                  <img src="img/proyectos-de-inversion-2.jpg" alt="Proyectos de inversión: proyecto 2" loading="lazy">
+                  <img src="img/proyectos-de-inversion-3.jpg" alt="Proyectos de inversión: proyecto 3" loading="lazy">
+                  <img src="img/proyectos-de-inversion-4.jpg" alt="Proyectos de inversión: proyecto 4" loading="lazy">
+                  <img src="img/proyectos-de-inversion-5.jpg" alt="Proyectos de inversión: proyecto 5" loading="lazy">
+                  <img src="img/proyectos-de-inversion-6.jpg" alt="Proyectos de inversión: proyecto 6" loading="lazy">
+                  <img src="img/proyectos-de-inversion-7.jpg" alt="Proyectos de inversión: proyecto 7" loading="lazy">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contacto">
+    <div class="wrap">
+      <div>
+        <h2>Contacto</h2>
+        <ul class="ct">
+          <li>Teléfono: <a data-tel href="#"></a></li>
+          <li>Correo: <a data-mail href="#"></a></li>
+        </ul>
+        <a class="btn wa" data-wa href="#">Escribir por WhatsApp</a>
+      </div>
+      <div>
+        <p class="nom">edgar israel <b>SÁNCHEZ MORENO</b><em>arquitecto – decorador</em></p>
+        <p class="legal">Todo el material, ideas, conceptos, prototipos, proyectos y soluciones presentados en este sitio son propiedad del diseñador y/o autor, quien se reserva todos los derechos. Queda prohibida su reproducción parcial o total sin autorización previa por escrito.</p>
+      </div>
+      <img class="flogo" src="img/logo-pie.jpg" alt="Arkitektur Studio">
+    </div>
+    <div class="wrap">
+      <div class="pie" style="width:100%">© <span id="anio"></span> Arkitektur Studio. Todos los derechos reservados.</div>
+    </div>
+  </footer>
+
+  <script>
+    const CONFIG = {
+      telefono: "+52 000 000 0000",        
+      correo: "contacto@ejemplo.com",
+      whatsapp: "524427753975",            
+      mensaje: "Hola, me gustaría recibir información sobre sus servicios."
+    };
+
+    const wa = "https://wa.me/" + CONFIG.whatsapp.replace(/\D/g, "") + "?text=" + encodeURIComponent(CONFIG.mensaje);
+    document.querySelectorAll("[data-wa]").forEach(a => { a.href = wa; a.target = "_blank"; a.rel = "noopener"; });
+    document.querySelectorAll("[data-tel]").forEach(a => { a.textContent = CONFIG.telefono; a.href = "tel:" + CONFIG.telefono.replace(/[^\d+]/g, ""); });
+    document.querySelectorAll("[data-mail]").forEach(a => { a.textContent = CONFIG.correo; a.href = "mailto:" + CONFIG.correo; });
+
+    const encabezado = document.getElementById("encabezado");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
+        encabezado.classList.add("visible-scroll");
+      } else {
+        encabezado.classList.remove("visible-scroll");
+      }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.oculto').forEach(el => observer.observe(el));
+
+    const filas = [...document.querySelectorAll(".lin")];
+    const hover = matchMedia("(hover:hover)");
+    const set = (f, on) => { 
+      f.classList.toggle("abierto", on); 
+      f.querySelector(".cab").setAttribute("aria-expanded", on); 
+    };
+
+    filas.forEach(f => {
+      const p = f.querySelector(".pista");
+      [...p.children].forEach(i => p.appendChild(i.cloneNode()));
+      
+      p.querySelectorAll("img:nth-child(n+" + (p.children.length / 2 + 1) + ")").forEach(i => { 
+        i.alt = ""; 
+        i.setAttribute("aria-hidden", "true"); 
+      });
+      
+      p.style.setProperty("--dur", (p.children.length * 3.2) + "s");
+
+      f.addEventListener("mouseenter", () => { 
+        if(hover.matches) set(f, true); 
+      });
+      
+      f.addEventListener("mouseleave", () => { 
+        if(hover.matches && !f.classList.contains("fijado")) {
+          set(f, false);
+        }
+      });
+
+      f.querySelector(".cab").addEventListener("click", () => {
+        const estabaFijado = f.classList.contains("fijado");
+        if (estabaFijado) {
+          f.classList.remove("fijado");
+          if (!hover.matches) set(f, false);
+        } else {
+          f.classList.add("fijado");
+          set(f, true);
+        }
+      });
+    });
+
+    document.getElementById("anio").textContent = new Date().getFullYear();
+  
+    (function() {
+      const cv = document.getElementById('arq-complex');
+      if (!cv) return;
+      const ctx = cv.getContext('2d');
+      let W, H, dpr;
+
+      let mx = 0, my = 0, tx = 0, ty = 0;
+      cv.addEventListener('mousemove', e => {
+          const r = cv.getBoundingClientRect();
+          mx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+          my = ((e.clientY - r.top) / r.height - 0.5) * 2;
+      });
+      cv.addEventListener('mouseleave', () => { mx = 0; my = 0; });
+
+      const nodes = [];
+      const edges = [];
+
+      function addBuilding(cx, cz, w, d, h, floors, type) {
+          const baseIdx = nodes.length;
+          for(let f = 0; f <= floors; f++) {
+              let y = 180 - (f / floors) * h;
+              nodes.push({x: cx-w, y: y, z: cz-d});
+              nodes.push({x: cx+w, y: y, z: cz-d});
+              nodes.push({x: cx+w, y: y, z: cz+d});
+              nodes.push({x: cx-w, y: y, z: cz+d});
+
+              let offset = baseIdx + f * 4;
+              edges.push([offset, offset+1, type]);
+              edges.push([offset+1, offset+2, type]);
+              edges.push([offset+2, offset+3, type]);
+              edges.push([offset+3, offset, type]);
+
+              if(f > 0) {
+                  let prev = offset - 4;
+                  edges.push([prev, offset, type]);
+                  edges.push([prev+1, offset+1, type]);
+                  edges.push([prev+2, offset+2, type]);
+                  edges.push([prev+3, offset+3, type]);
+              }
+          }
+      }
+
+      const gridS = 10, gridW = 350;
+      for(let i = -gridS; i <= gridS; i++) {
+          nodes.push({x: i * (gridW/gridS), y: 180, z: -gridW});
+          nodes.push({x: i * (gridW/gridS), y: 180, z: gridW});
+          edges.push([nodes.length-2, nodes.length-1, 0]);
+
+          nodes.push({x: -gridW, y: 180, z: i * (gridW/gridS)});
+          nodes.push({x: gridW, y: 180, z: i * (gridW/gridS)});
+          edges.push([nodes.length-2, nodes.length-1, 0]);
+      }
+
+      addBuilding(0, 0, 45, 35, 280, 12, 1);       
+      addBuilding(-90, -80, 30, 45, 180, 7, 2);    
+      addBuilding(110, 60, 40, 40, 150, 6, 2);     
+      addBuilding(-120, 90, 25, 25, 220, 9, 3);    
+      addBuilding(90, -110, 50, 30, 110, 4, 3);    
+
+      let time = 0;
+      function draw() {
+          time += 0.003; 
+          tx += (mx - tx) * 0.05; 
+          ty += (my - ty) * 0.05;
+
+          ctx.clearRect(0, 0, W, H);
+
+          const s = getComputedStyle(document.documentElement);
+          const cAzul = s.getPropertyValue('--azul').trim();
+          const cVino = s.getPropertyValue('--vino').trim();
+          const cMut = s.getPropertyValue('--mut').trim();
+          const isDark = document.documentElement.dataset.theme === 'dark' || matchMedia('(prefers-color-scheme: dark)').matches;
+
+          const yaw = time + tx * 0.6;
+          const pit = 0.35 + ty * 0.3;
+          const cy = Math.cos(yaw), sy = Math.sin(yaw);
+          const cp = Math.cos(pit), sp = Math.sin(pit);
+
+          const projected = nodes.map(n => {
+              let x1 = n.x * cy + n.z * sy;
+              let z1 = -n.x * sy + n.z * cy;
+              let y2 = n.y * cp - z1 * sp;
+              let z2 = n.y * sp + z1 * cp;
+
+              const fl = 600;
+              const scale = fl / (fl + z2 + 200);
+              return { x: W/2 + x1 * scale, y: H/2 + y2 * scale + 40, z: z2, s: scale };
+          });
+
+          const edgesRender = edges.map(e => {
+              const p1 = projected[e[0]];
+              const p2 = projected[e[1]];
+              return { p1, p2, type: e[2], z: (p1.z + p2.z)/2 };
+          }).sort((a, b) => b.z - a.z);
+
+          ctx.lineCap = 'round';
+          for(let e of edgesRender) {
+              if (e.p1.z < -600 || e.p2.z < -600) continue; 
+              ctx.beginPath();
+              ctx.moveTo(e.p1.x, e.p1.y);
+              ctx.lineTo(e.p2.x, e.p2.y);
+
+              if (e.type === 0) { 
+                  ctx.strokeStyle = cMut; 
+                  ctx.globalAlpha = isDark ? 0.1 : 0.15; 
+                  ctx.lineWidth = 1;
+              } else if (e.type === 1) { 
+                  ctx.strokeStyle = cVino; 
+                  ctx.globalAlpha = isDark ? 0.8 : 0.9; 
+                  ctx.lineWidth = 1.6 * e.p1.s;
+              } else if (e.type === 2) { 
+                  ctx.strokeStyle = cAzul; 
+                  ctx.globalAlpha = isDark ? 0.7 : 0.8; 
+                  ctx.lineWidth = 1.3 * e.p1.s;
+              } else { 
+                  ctx.strokeStyle = cMut; 
+                  ctx.globalAlpha = isDark ? 0.4 : 0.6; 
+                  ctx.lineWidth = 1 * e.p1.s;
+              }
+              ctx.stroke();
+          }
+          ctx.globalAlpha = 1;
+      }
+
+      function resize() {
+          dpr = Math.min(devicePixelRatio || 1, 2);
+          W = cv.clientWidth;
+          H = cv.clientHeight;
+          cv.width = W * dpr;
+          cv.height = H * dpr;
+          ctx.scale(dpr, dpr);
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      let raf;
+      function loop() {
+          draw();
+          raf = requestAnimationFrame(loop);
+      }
+
+      const obs = new IntersectionObserver(en => {
+          if(en[0].isIntersecting) {
+              if(!raf) loop();
+          } else {
+              cancelAnimationFrame(raf);
+              raf = null;
+          }
+      });
+      obs.observe(cv);
+    })();
+  </script>
+</body>
+</html>
