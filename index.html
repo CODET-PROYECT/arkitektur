@@ -169,13 +169,19 @@
     .lin.abierto .pan { grid-template-rows: 1fr; }
     .pan > div { overflow: hidden; min-height: 0; }
     .car { overflow: hidden; padding: 16px 0 30px; }
-    .pista { display: flex; width: max-content; animation: desliza var(--dur, 45s) linear infinite; }
+    .pista { display: flex; width: max-content; animation: desliza var(--dur, 45s) linear infinite; will-change: transform;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden; }
     .pista img { 
       height: clamp(200px, 28vw, 320px); 
       width: auto; 
       display: block; 
       margin-right: 14px; 
       flex: none; 
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
     @keyframes desliza { to { transform: translateX(-50%); } }
     @media (prefers-reduced-motion: reduce) { .car { overflow-x: auto; } .pista { animation: none; } }
