@@ -169,22 +169,27 @@
     .lin.abierto .pan { grid-template-rows: 1fr; }
     .pan > div { overflow: hidden; min-height: 0; }
     .car { overflow: hidden; padding: 16px 0 30px; }
-    .pista { display: flex; width: max-content; animation: desliza var(--dur, 45s) linear infinite; will-change: transform;
+    .pista { 
+      display: flex; 
+      width: max-content; 
+    }
+    .lin.abierto .pista {
+      animation: desliza var(--dur, 45s) linear infinite; 
       transform: translateZ(0);
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden; }
+      will-change: transform;
+    }
     .pista img { 
       height: clamp(200px, 28vw, 320px); 
       width: auto; 
       display: block; 
       margin-right: 14px; 
       flex: none; 
-      transform: translateZ(0);
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
     }
-    @keyframes desliza { to { transform: translateX(-50%); } }
-    @media (prefers-reduced-motion: reduce) { .car { overflow-x: auto; } .pista { animation: none; } }
+    @keyframes desliza { 
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); } 
+    }
+    @media (prefers-reduced-motion: reduce) { .car { overflow-x: auto; } .lin.abierto .pista { animation: none; } }
     footer { scroll-snap-align: end; background: var(--pizarra); color: #fff; padding: clamp(40px, 6vw, 72px) 0 28px; }
     footer .wrap { display: grid; grid-template-columns: 1.3fr 1fr auto; gap: clamp(24px, 4vw, 56px); align-items: start; }
     footer h2 { margin: 0 0 14px; font-weight: 500; font-size: 1.5rem; }
@@ -443,6 +448,7 @@
       if (!cv) return;
       const ctx = cv.getContext('2d');
       let W, H, dpr;
+      let cAzul, cVino, cMut, isDark;
 
       let mx = 0, my = 0, tx = 0, ty = 0;
       cv.addEventListener('mousemove', e => {
@@ -497,6 +503,14 @@
       addBuilding(-120, 90, 25, 25, 220, 9, 3);    
       addBuilding(90, -110, 50, 30, 110, 4, 3);    
 
+      function updateColors() {
+          const s = getComputedStyle(document.documentElement);
+          cAzul = s.getPropertyValue('--azul').trim();
+          cVino = s.getPropertyValue('--vino').trim();
+          cMut = s.getPropertyValue('--mut').trim();
+          isDark = document.documentElement.dataset.theme === 'dark' || matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+
       let time = 0;
       function draw() {
           time += 0.003; 
@@ -504,12 +518,6 @@
           ty += (my - ty) * 0.05;
 
           ctx.clearRect(0, 0, W, H);
-
-          const s = getComputedStyle(document.documentElement);
-          const cAzul = s.getPropertyValue('--azul').trim();
-          const cVino = s.getPropertyValue('--vino').trim();
-          const cMut = s.getPropertyValue('--mut').trim();
-          const isDark = document.documentElement.dataset.theme === 'dark' || matchMedia('(prefers-color-scheme: dark)').matches;
 
           const yaw = time + tx * 0.6;
           const pit = 0.35 + ty * 0.3;
@@ -569,6 +577,7 @@
           cv.width = W * dpr;
           cv.height = H * dpr;
           ctx.scale(dpr, dpr);
+          updateColors();
       }
       window.addEventListener('resize', resize);
       resize();
