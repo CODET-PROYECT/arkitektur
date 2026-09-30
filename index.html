@@ -340,13 +340,13 @@
       <div>
         <h2>Contacto</h2>
         <ul class="ct">
-          <li>Teléfono: <a data-tel href="#"></a></li>
+          <li>Teléfono: <a data-tel href="#"></a>, <a data-tel_2 href="#"></a></li>
           <li>Correo: <a data-mail href="#"></a></li>
         </ul>
         <a class="btn wa" data-wa href="#">Escribir por WhatsApp</a>
       </div>
       <div>
-        <p class="nom">edgar israel <b>SÁNCHEZ MORENO</b><em>arquitecto – decorador</em></p>
+        <p class="nom">EDGAR ISRAEL <b>SÁNCHEZ MORENO</b><em>arquitecto – decorador</em></p>
         <p class="legal">Todo el material, ideas, conceptos, prototipos, proyectos y soluciones presentados en este sitio son propiedad del diseñador y/o autor, quien se reserva todos los derechos. Queda prohibida su reproducción parcial o total sin autorización previa por escrito.</p>
       </div>
       <img class="flogo" src="img/logo-pie.jpg" alt="Arkitektur Studio">
@@ -358,15 +358,17 @@
 
   <script>
     const CONFIG = {
-      telefono: "+52 000 000 0000",        
-      correo: "contacto@ejemplo.com",
-      whatsapp: "524427753975",            
+      telefono: "+52 442 149 5951", 
+      telefono_2: "+52 551 392 4989",       
+      correo: "peiarq@gmail.com",
+      whatsapp: "525513924989",            
       mensaje: "Hola, me gustaría recibir información sobre sus servicios."
     };
 
     const wa = "https://wa.me/" + CONFIG.whatsapp.replace(/\D/g, "") + "?text=" + encodeURIComponent(CONFIG.mensaje);
     document.querySelectorAll("[data-wa]").forEach(a => { a.href = wa; a.target = "_blank"; a.rel = "noopener"; });
     document.querySelectorAll("[data-tel]").forEach(a => { a.textContent = CONFIG.telefono; a.href = "tel:" + CONFIG.telefono.replace(/[^\d+]/g, ""); });
+    document.querySelectorAll("[data-tel_2]").forEach(a => { a.textContent = CONFIG.telefono_2; a.href = "tel:" + CONFIG.telefono_2.replace(/[^\d+]/g, ""); });
     document.querySelectorAll("[data-mail]").forEach(a => { a.textContent = CONFIG.correo; a.href = "mailto:" + CONFIG.correo; });
 
     const encabezado = document.getElementById("encabezado");
