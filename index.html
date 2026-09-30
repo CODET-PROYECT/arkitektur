@@ -168,16 +168,16 @@
     .pan { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .5s cubic-bezier(.2, .7, .2, 1); }
     .lin.abierto .pan { grid-template-rows: 1fr; }
     .pan > div { overflow: hidden; min-height: 0; }
-    .car { overflow: hidden; padding: 16px 0 30px; }
+    .car { overflow: hidden; padding: 16px 0 30px; contain: paint; }
     .pista { 
       display: flex; 
       width: max-content; 
       animation: desliza var(--dur, 45s) linear infinite;
       animation-play-state: paused;
-      will-change: transform;
     }
     .lin.abierto .pista {
       animation-play-state: running;
+      will-change: transform;
     }
     .pista img { 
       height: clamp(200px, 28vw, 320px); 
@@ -572,7 +572,8 @@
       }
 
       function resize() {
-          dpr = Math.min(devicePixelRatio || 1, 2);
+          // Reduce carga en celulares bajando a dpr 1 si la pantalla es menor a 860px
+          dpr = window.innerWidth < 860 ? 1 : Math.min(devicePixelRatio || 1, 2);
           W = cv.clientWidth;
           H = cv.clientHeight;
           cv.width = W * dpr;
