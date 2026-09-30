@@ -172,11 +172,12 @@
     .pista { 
       display: flex; 
       width: max-content; 
+      animation: desliza var(--dur, 45s) linear infinite;
+      animation-play-state: paused;
+      will-change: transform;
     }
     .lin.abierto .pista {
-      animation: desliza var(--dur, 45s) linear infinite; 
-      transform: translateZ(0);
-      will-change: transform;
+      animation-play-state: running;
     }
     .pista img { 
       height: clamp(200px, 28vw, 320px); 
@@ -186,10 +187,10 @@
       flex: none; 
     }
     @keyframes desliza { 
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); } 
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); } 
     }
-    @media (prefers-reduced-motion: reduce) { .car { overflow-x: auto; } .lin.abierto .pista { animation: none; } }
+    @media (prefers-reduced-motion: reduce) { .car { overflow-x: auto; } .pista { animation: none; } }
     footer { scroll-snap-align: end; background: var(--pizarra); color: #fff; padding: clamp(40px, 6vw, 72px) 0 28px; }
     footer .wrap { display: grid; grid-template-columns: 1.3fr 1fr auto; gap: clamp(24px, 4vw, 56px); align-items: start; }
     footer h2 { margin: 0 0 14px; font-weight: 500; font-size: 1.5rem; }
@@ -261,13 +262,13 @@
             <div>
               <div class="car">
                 <div class="pista">
-                  <img src="img/residencias-1.jpg" alt="Residencias: proyecto 1" loading="lazy">
-                  <img src="img/residencias-2.jpg" alt="Residencias: proyecto 2" loading="lazy">
-                  <img src="img/residencias-3.jpg" alt="Residencias: proyecto 3" loading="lazy">
-                  <img src="img/residencias-4.jpg" alt="Residencias: proyecto 4" loading="lazy">
-                  <img src="img/residencias-5.jpg" alt="Residencias: proyecto 5" loading="lazy">
-                  <img src="img/residencias-6.jpg" alt="Residencias: proyecto 6" loading="lazy">
-                  <img src="img/residencias-7.jpg" alt="Residencias: proyecto 7" loading="lazy">
+                  <img src="img/residencias-1.jpg" alt="Residencias: proyecto 1">
+                  <img src="img/residencias-2.jpg" alt="Residencias: proyecto 2">
+                  <img src="img/residencias-3.jpg" alt="Residencias: proyecto 3">
+                  <img src="img/residencias-4.jpg" alt="Residencias: proyecto 4">
+                  <img src="img/residencias-5.jpg" alt="Residencias: proyecto 5">
+                  <img src="img/residencias-6.jpg" alt="Residencias: proyecto 6">
+                  <img src="img/residencias-7.jpg" alt="Residencias: proyecto 7">
                 </div>
               </div>
             </div>
@@ -284,13 +285,13 @@
             <div>
               <div class="car">
                 <div class="pista">
-                  <img src="img/casa-habitacion-1.jpg" alt="Casa habitación: proyecto 1" loading="lazy">
-                  <img src="img/casa-habitacion-2.jpg" alt="Casa habitación: proyecto 2" loading="lazy">
-                  <img src="img/casa-habitacion-3.jpg" alt="Casa habitación: proyecto 3" loading="lazy">
-                  <img src="img/casa-habitacion-4.jpg" alt="Casa habitación: proyecto 4" loading="lazy">
-                  <img src="img/casa-habitacion-5.jpg" alt="Casa habitación: proyecto 5" loading="lazy">
-                  <img src="img/casa-habitacion-6.jpg" alt="Casa habitación: proyecto 6" loading="lazy">
-                  <img src="img/casa-habitacion-7.jpg" alt="Casa habitación: proyecto 7" loading="lazy">
+                  <img src="img/casa-habitacion-1.jpg" alt="Casa habitación: proyecto 1">
+                  <img src="img/casa-habitacion-2.jpg" alt="Casa habitación: proyecto 2">
+                  <img src="img/casa-habitacion-3.jpg" alt="Casa habitación: proyecto 3">
+                  <img src="img/casa-habitacion-4.jpg" alt="Casa habitación: proyecto 4">
+                  <img src="img/casa-habitacion-5.jpg" alt="Casa habitación: proyecto 5">
+                  <img src="img/casa-habitacion-6.jpg" alt="Casa habitación: proyecto 6">
+                  <img src="img/casa-habitacion-7.jpg" alt="Casa habitación: proyecto 7">
                 </div>
               </div>
             </div>
@@ -307,13 +308,13 @@
             <div>
               <div class="car">
                 <div class="pista">
-                  <img src="img/interiorismo-1.jpg" alt="Interiorismo: proyecto 1" loading="lazy">
-                  <img src="img/interiorismo-2.jpg" alt="Interiorismo: proyecto 2" loading="lazy">
-                  <img src="img/interiorismo-3.jpg" alt="Interiorismo: proyecto 3" loading="lazy">
-                  <img src="img/interiorismo-4.jpg" alt="Interiorismo: proyecto 4" loading="lazy">
-                  <img src="img/interiorismo-5.jpg" alt="Interiorismo: proyecto 5" loading="lazy">
-                  <img src="img/interiorismo-6.jpg" alt="Interiorismo: proyecto 6" loading="lazy">
-                  <img src="img/interiorismo-7.jpg" alt="Interiorismo: proyecto 7" loading="lazy">
+                  <img src="img/interiorismo-1.jpg" alt="Interiorismo: proyecto 1">
+                  <img src="img/interiorismo-2.jpg" alt="Interiorismo: proyecto 2">
+                  <img src="img/interiorismo-3.jpg" alt="Interiorismo: proyecto 3">
+                  <img src="img/interiorismo-4.jpg" alt="Interiorismo: proyecto 4">
+                  <img src="img/interiorismo-5.jpg" alt="Interiorismo: proyecto 5">
+                  <img src="img/interiorismo-6.jpg" alt="Interiorismo: proyecto 6">
+                  <img src="img/interiorismo-7.jpg" alt="Interiorismo: proyecto 7">
                 </div>
               </div>
             </div>
@@ -330,13 +331,13 @@
             <div>
               <div class="car">
                 <div class="pista">
-                  <img src="img/proyectos-de-inversion-1.jpg" alt="Proyectos de inversión: proyecto 1" loading="lazy">
-                  <img src="img/proyectos-de-inversion-2.jpg" alt="Proyectos de inversión: proyecto 2" loading="lazy">
-                  <img src="img/proyectos-de-inversion-3.jpg" alt="Proyectos de inversión: proyecto 3" loading="lazy">
-                  <img src="img/proyectos-de-inversion-4.jpg" alt="Proyectos de inversión: proyecto 4" loading="lazy">
-                  <img src="img/proyectos-de-inversion-5.jpg" alt="Proyectos de inversión: proyecto 5" loading="lazy">
-                  <img src="img/proyectos-de-inversion-6.jpg" alt="Proyectos de inversión: proyecto 6" loading="lazy">
-                  <img src="img/proyectos-de-inversion-7.jpg" alt="Proyectos de inversión: proyecto 7" loading="lazy">
+                  <img src="img/proyectos-de-inversion-1.jpg" alt="Proyectos de inversión: proyecto 1">
+                  <img src="img/proyectos-de-inversion-2.jpg" alt="Proyectos de inversión: proyecto 2">
+                  <img src="img/proyectos-de-inversion-3.jpg" alt="Proyectos de inversión: proyecto 3">
+                  <img src="img/proyectos-de-inversion-4.jpg" alt="Proyectos de inversión: proyecto 4">
+                  <img src="img/proyectos-de-inversion-5.jpg" alt="Proyectos de inversión: proyecto 5">
+                  <img src="img/proyectos-de-inversion-6.jpg" alt="Proyectos de inversión: proyecto 6">
+                  <img src="img/proyectos-de-inversion-7.jpg" alt="Proyectos de inversión: proyecto 7">
                 </div>
               </div>
             </div>
