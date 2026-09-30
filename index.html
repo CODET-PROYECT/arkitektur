@@ -89,7 +89,8 @@
       display: flex; 
       align-items: center; 
       justify-content: center; 
-      min-height: 100vh; 
+      min-height: 100vh;
+      min-height: 100dvh; 
       padding: clamp(18px, 3vw, 36px) 20px; 
       position: relative; 
     }
@@ -104,7 +105,7 @@
     }
     .scroll-wrap {
       position: absolute;
-      bottom: clamp(20px, 5vh, 40px);
+      bottom: clamp(20px, 5dvh, 40px);
       left: 50%;
       transform: translateX(-50%);
     }
@@ -127,6 +128,7 @@
       color: #fff; 
       overflow: hidden; 
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       align-items: center;
     }
@@ -142,13 +144,13 @@
     .btn.wa:hover { background: #fff; color: #0f2a35; }
     .btn.sec { border-color: #fff; color: #fff; }
     .btn.sec:hover { background: #fff; color: var(--vino); }
-    .serv { padding: clamp(56px, 8vw, 110px) 0; min-height: 100vh; display: flex; align-items: center; }
+    .serv { padding: clamp(56px, 8vw, 110px) 0; min-height: 100vh; min-height: 100dvh; display: flex; align-items: center; }
     .serv-cab { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; margin-bottom: clamp(40px, 6vw, 72px); width: 100%; }
     .serv-cab h2 { margin: 0; font-weight: 500; font-size: clamp(1.8rem, 3.6vw, 3rem); line-height: 1.1; letter-spacing: -.015em; }
     .serv-cab .intro { margin: 0; color: var(--mut); max-width: 50ch; font-size: 1.1rem; }
     #arq-complex { 
       width: 100%; 
-      height: clamp(280px, 45vh, 500px); 
+      height: clamp(280px, 45dvh, 500px); 
       display: block; 
       cursor: crosshair; 
       -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 85%);
@@ -174,10 +176,10 @@
       width: max-content; 
       animation: desliza var(--dur, 45s) linear infinite;
       animation-play-state: paused;
+      will-change: transform;
     }
     .lin.abierto .pista {
       animation-play-state: running;
-      will-change: transform;
     }
     .pista img { 
       height: clamp(200px, 28vw, 320px); 
@@ -443,6 +445,18 @@
     });
 
     document.getElementById("anio").textContent = new Date().getFullYear();
+
+    document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(a => {
+      a.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          document.documentElement.style.scrollSnapType = 'none';
+          target.scrollIntoView({ behavior: 'smooth' });
+          setTimeout(() => { document.documentElement.style.scrollSnapType = ''; }, 1000);
+        }
+      });
+    });
   
     (function() {
       const cv = document.getElementById('arq-complex');
@@ -572,7 +586,6 @@
       }
 
       function resize() {
-          // Reduce carga en celulares bajando a dpr 1 si la pantalla es menor a 860px
           dpr = window.innerWidth < 860 ? 1 : Math.min(devicePixelRatio || 1, 2);
           W = cv.clientWidth;
           H = cv.clientHeight;
@@ -581,7 +594,14 @@
           ctx.scale(dpr, dpr);
           updateColors();
       }
-      window.addEventListener('resize', resize);
+
+      let lastW = window.innerWidth;
+      window.addEventListener('resize', () => {
+          if (window.innerWidth !== lastW) {
+              lastW = window.innerWidth;
+              resize();
+          }
+      });
       resize();
 
       let raf;
