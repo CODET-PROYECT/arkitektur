@@ -1,0 +1,204 @@
+{
+  "categories": [
+    {
+      "id": "residencias",
+      "title": "Residencias",
+      "description": "Arquitectura con detalles que marcan la diferencia y logran un sello personal para cada cliente.",
+      "aspect": "wide",
+      "images": [
+        {
+          "src": "residencias-1.jpg",
+          "alt": "Casa de líneas contemporáneas con fachada de madera y piedra junto al jardín",
+          "width": 656,
+          "height": 480
+        },
+        {
+          "src": "residencias-2.jpg",
+          "alt": "Residencia de dos niveles con fachada clara y acceso central",
+          "width": 900,
+          "height": 731
+        },
+        {
+          "src": "residencias-3.jpg",
+          "alt": "Terraza cubierta enmarcada por muros de piedra y vista al jardín",
+          "width": 539,
+          "height": 720
+        },
+        {
+          "src": "residencias-4.jpg",
+          "alt": "Fachada residencial curva con amplios ventanales",
+          "width": 680,
+          "height": 900
+        },
+        {
+          "src": "residencias-5.jpg",
+          "alt": "Casa de una planta con jardín frontal y palmeras",
+          "width": 649,
+          "height": 393
+        },
+        {
+          "src": "residencias-6.jpg",
+          "alt": "Residencia de estilo clásico rodeada de jardín",
+          "width": 681,
+          "height": 900
+        },
+        {
+          "src": "residencias-7.jpg",
+          "alt": "Detalle de alero de teja y columna de piedra en una vivienda",
+          "width": 900,
+          "height": 505
+        }
+      ]
+    },
+    {
+      "id": "casa-habitacion",
+      "title": "Casa habitación",
+      "description": "Construcciones limpias y sencillas, con riqueza arquitectónica, que generan seguridad y calma para quien las vive.",
+      "aspect": "portrait",
+      "images": [
+        {
+          "src": "casa-habitacion-1.jpg",
+          "alt": "Acceso a conjunto residencial con volumen de piedra y jardinería",
+          "width": 900,
+          "height": 522
+        },
+        {
+          "src": "casa-habitacion-2.jpg",
+          "alt": "Casa de dos niveles con cochera cubierta y teja en la fachada",
+          "width": 900,
+          "height": 600
+        },
+        {
+          "src": "casa-habitacion-3.jpg",
+          "alt": "Residencia blanca de dos niveles con ventanales y palmera",
+          "width": 900,
+          "height": 579
+        },
+        {
+          "src": "casa-habitacion-4.jpg",
+          "alt": "Casa contemporánea con volúmenes curvos en tonos tierra",
+          "width": 900,
+          "height": 532
+        },
+        {
+          "src": "casa-habitacion-5.jpg",
+          "alt": "Vivienda contemporánea blanca con acceso vehicular",
+          "width": 900,
+          "height": 555
+        },
+        {
+          "src": "casa-habitacion-6.jpg",
+          "alt": "Fachada nocturna de casa iluminada con ventanales amplios",
+          "width": 900,
+          "height": 550
+        },
+        {
+          "src": "casa-habitacion-7.jpg",
+          "alt": "Casa de dos niveles con fachada blanca y jardín frontal",
+          "width": 900,
+          "height": 459
+        }
+      ]
+    },
+    {
+      "id": "interiorismo",
+      "title": "Interiorismo",
+      "description": "Espacios únicos y acogedores, con especial atención a las vistas y a la iluminación.",
+      "aspect": "wide",
+      "images": [
+        {
+          "src": "interiorismo-1.jpg",
+          "alt": "Sala luminosa con mobiliario claro, cuadros y acentos en terracota",
+          "width": 871,
+          "height": 651
+        },
+        {
+          "src": "interiorismo-2.jpg",
+          "alt": "Comedor contemporáneo con mobiliario blanco y muro rojo oscuro",
+          "width": 900,
+          "height": 597
+        },
+        {
+          "src": "interiorismo-3.jpg",
+          "alt": "Interior nocturno con ventanales de piso a techo",
+          "width": 594,
+          "height": 900
+        },
+        {
+          "src": "interiorismo-4.jpg",
+          "alt": "Espacio interior con muro de textura cálida y piezas decorativas",
+          "width": 900,
+          "height": 847
+        },
+        {
+          "src": "interiorismo-5.jpg",
+          "alt": "Escalera interior junto a un ventanal vertical y vegetación",
+          "width": 635,
+          "height": 900
+        },
+        {
+          "src": "interiorismo-6.jpg",
+          "alt": "Interior con espejo de agua, vegetación y luz natural",
+          "width": 831,
+          "height": 702
+        },
+        {
+          "src": "interiorismo-7.jpg",
+          "alt": "Detalle de lavabo de piedra con grifería oscura",
+          "width": 419,
+          "height": 546
+        }
+      ]
+    },
+    {
+      "id": "inversion",
+      "title": "Proyectos de inversión",
+      "description": "Fraccionamientos, desarrollos industriales, comerciales y oficinas, con criterios de sustentabilidad.",
+      "aspect": "wide",
+      "images": [
+        {
+          "src": "proyectos-de-inversion-1.jpg",
+          "alt": "Desarrollo de baja altura con jardines y arquitectura contemporánea",
+          "width": 900,
+          "height": 525
+        },
+        {
+          "src": "proyectos-de-inversion-2.jpg",
+          "alt": "Edificio comercial revestido con celosía vertical oscura",
+          "width": 587,
+          "height": 430
+        },
+        {
+          "src": "proyectos-de-inversion-3.jpg",
+          "alt": "Fachada de edificio comercial con terrazas y toldos",
+          "width": 605,
+          "height": 430
+        },
+        {
+          "src": "proyectos-de-inversion-4.jpg",
+          "alt": "Cubierta de estructura ligera sobre una cancha deportiva",
+          "width": 562,
+          "height": 430
+        },
+        {
+          "src": "proyectos-de-inversion-5.jpg",
+          "alt": "Acceso a complejo comercial con caseta y estructura metálica",
+          "width": 900,
+          "height": 324
+        },
+        {
+          "src": "proyectos-de-inversion-6.jpg",
+          "alt": "Acceso vehicular a edificio de oficinas con fachada azul",
+          "width": 580,
+          "height": 430
+        },
+        {
+          "src": "proyectos-de-inversion-7.jpg",
+          "alt": "Casa muestra de desarrollo residencial rodeada de áreas verdes",
+          "width": 562,
+          "height": 425
+        }
+      ]
+    }
+  ]
+}
